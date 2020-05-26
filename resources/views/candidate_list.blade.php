@@ -12,8 +12,7 @@
                 <div class="card-body">
                     {{-- Content --}}
                     @foreach ($candidates as $candidate)
-                <p>{{$candidate->name}}</p>
-                        
+                        <p>{{$candidate->name}}</p>
                     @endforeach
 
                 </div>

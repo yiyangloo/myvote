@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Election;
+use App\User;
 use Illuminate\Http\Request;
 
 class ElectionController extends Controller
@@ -14,7 +15,8 @@ class ElectionController extends Controller
      */
     public function index()
     {
-        return view('election/index');
+        $candidates = User::where('role', 1)->get();
+        return view('election/index', compact('candidates'));
     }
 
     /**
