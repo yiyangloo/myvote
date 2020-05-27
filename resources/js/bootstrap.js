@@ -9,6 +9,8 @@ window._ = require('lodash');
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
+    window.moment = require('moment');
+    window.datetimepicker = require('tempusdominus-bootstrap-4');
 
     require('bootstrap');
 } catch (e) {}
