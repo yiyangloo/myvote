@@ -91,12 +91,13 @@
                     </div>
                 </div>
             </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#start_date').datetimepicker();
+
+            <script>
+                $('#start_date').datetimepicker({
+                    format: 'YYYY-MM-DD HH:mm:ss'
                 });
-                $(function () {
-                    $('#end_date').datetimepicker();
+                $('#end_date').datetimepicker({
+                    format: 'YYYY-MM-DD HH:mm:ss'
                 });
             </script>
         </div>

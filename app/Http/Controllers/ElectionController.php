@@ -36,8 +36,22 @@ class ElectionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        dd(request());
+    {   
+        $data = request()->validate([
+            'election_title' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'election_description' => '',
+            //'election_candidate' => 'required',
+        ]);
+        //dd($data);
+        $candidates_id = User::where('role', $request->election_candidate)->get();
+        //dd($candidates_id);
+        $election = new Election($data);
+        $election->save();
+        $election->candidates()->sync($candidates_id);
+        return redirect('election.index');
+        //dd($request->election_candidate);
     }
 
     /**
