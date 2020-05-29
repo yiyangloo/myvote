@@ -15,8 +15,9 @@ class ElectionController extends Controller
      */
     public function index()
     {
+        $elections = Election::all();
         $candidates = User::where('role', 1)->get();
-        return view('election/index', compact('candidates'));
+        return view('election/index', compact('candidates','elections'));
     }
 
     /**
@@ -42,16 +43,13 @@ class ElectionController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
             'election_description' => '',
-            //'election_candidate' => 'required',
         ]);
-        //dd($data);
-        $candidates_id = User::where('role', $request->election_candidate)->get();
-        //dd($candidates_id);
+
+        $candidates_id = User::whereIn('id', $request->election_candidate)->get();
         $election = new Election($data);
         $election->save();
         $election->candidates()->sync($candidates_id);
-        return redirect('election.index');
-        //dd($request->election_candidate);
+        return redirect()->back();
     }
 
     /**
@@ -62,7 +60,7 @@ class ElectionController extends Controller
      */
     public function show(Election $election)
     {
-        //
+        return view('election.show', compact('election'));
     }
 
     /**
