@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Vote;
+use App\Election;
+use App\User;
 use Illuminate\Http\Request;
+use DB;
 
 class VoteController extends Controller
 {
@@ -35,7 +38,11 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $candidate_election = DB::table('candidate_election')->where('election_id', $request->election_id)->where('user_id', $request->candidate_id)->get()->first();
+        $vote = new Vote();
+        $vote->candidate_election_id = $candidate_election->id;
+        $vote->save();
+        return redirect()->back();
     }
 
     /**

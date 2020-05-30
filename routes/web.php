@@ -27,3 +27,4 @@ Route::get('/candidate', 'CandidateController@index')->name('candidate')->middle
 Route::resource('profile','ProfileController');
 Route::resource('candidate_list','CandidateListController');
 Route::resource('election','ElectionController');
+Route::resource('vote','VoteController');

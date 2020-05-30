@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Election;
 use App\User;
+use App\Vote;
+use DB;
 use Illuminate\Http\Request;
 
 class ElectionController extends Controller
@@ -60,7 +62,8 @@ class ElectionController extends Controller
      */
     public function show(Election $election)
     {
-        return view('election.show', compact('election'));
+        $vote = DB::table('candidate_election')->join('votes', 'candidate_election.id', '=', 'votes.candidate_election_id')->where('candidate_election.election_id', $election->id)->get();
+        return view('election.show', compact('election','vote'));
     }
 
     /**

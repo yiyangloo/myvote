@@ -11,4 +11,8 @@ class Election extends Model
     public function candidates(){
         return $this->belongsToMany(\App\User::class,'candidate_election')->withTimestamps();
     }
+
+    public function votes(){
+        return $this->hasManyThrough('App\Vote','App\User');
+    }
 }
