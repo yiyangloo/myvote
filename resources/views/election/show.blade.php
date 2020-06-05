@@ -8,6 +8,13 @@
     </h4>
     <div class="card-body">
         <div class="row">
+            <div class="col">
+                {!! $chart->container() !!}
+                {!! $chart->script() !!}
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-6">
                 <h5 class="card-title">Start Date and Time</h5>
                 <p class="card-text">{{$election->start_date}}</p>
@@ -35,7 +42,7 @@
                 @foreach ($election->candidates as $candidate)
                 <tr>
                     <td>{{$candidate->name}}</td>
-                    <td>{{$vote->where('user_id', $candidate->id)->count()}}</td>
+                    <td>{{$vote_data->where('user_id', $candidate->id)->count()}}</td>
                     <td><button type="button" class="btn btn-primary" id="vote_confirmation"
                             data-id="{{$candidate->id}}" data-name="{{$candidate->name}}" data-toggle="modal"
                             data-target="#vote_candidate">Vote</button></td>
