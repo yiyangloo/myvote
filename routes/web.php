@@ -28,3 +28,4 @@ Route::resource('profile','ProfileController');
 Route::resource('candidate_list','CandidateListController');
 Route::resource('election','ElectionController');
 Route::resource('vote','VoteController');
+Route::resource('manifesto','ManifestoController');
