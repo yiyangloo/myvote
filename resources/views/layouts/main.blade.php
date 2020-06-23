@@ -12,6 +12,7 @@
                 <div class="collapse navbar-collapse" id="unimmmmmmmm">
                   <ul class="navbar-nav flex-column">
                   <li class="nav-item"><a class="nav-link" href="{{route('profile.index')}}">Profile</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{route('manifesto.index')}}">Manifesto</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('candidate_list.index')}}">Candidates</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('election.index')}}">Elections</a></li>
                   </ul>

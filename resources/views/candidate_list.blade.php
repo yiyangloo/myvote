@@ -10,11 +10,15 @@
                 </div>
 
                 <div class="card-body">
+                     <div class="col-sm-5">
                     {{-- Content --}}
                     @foreach ($candidates as $candidate)
                         <p>{{$candidate->name}}</p>
-                    @endforeach
+                        <img class="card-img-top" src="{{url('image/'.$candidate->image)}}" alt="{{$candidate->image}}">
+                        <p>{{$candidate->manifesto}}</p>
 
+                    @endforeach
+                    </div>
                 </div>
             </div>
         </div>
