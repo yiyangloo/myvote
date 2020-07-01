@@ -6,6 +6,7 @@ use App\Election;
 use App\User;
 use App\Vote;
 use DB;
+use App\Charts\ElectionResultChart;
 use Illuminate\Http\Request;
 
 class ElectionController extends Controller
@@ -44,7 +45,7 @@ class ElectionController extends Controller
             'election_title' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'election_description' => '',
+            'election_description' => 'required',
         ]);
 
         $candidates_id = User::whereIn('id', $request->election_candidate)->get();
@@ -62,8 +63,16 @@ class ElectionController extends Controller
      */
     public function show(Election $election)
     {
-        $vote = DB::table('candidate_election')->join('votes', 'candidate_election.id', '=', 'votes.candidate_election_id')->where('candidate_election.election_id', $election->id)->get();
-        return view('election.show', compact('election','vote'));
+        $vote_data = DB::table('candidate_election')->join('votes', 'candidate_election.id', '=', 'votes.candidate_election_id')->where('candidate_election.election_id', $election->id)->get();
+        $candidates_names = $election->candidates->pluck('name')->values();
+        $vote_query = DB::table('candidate_election')->join('votes', 'candidate_election.id', '=', 'votes.candidate_election_id')->where('candidate_election.election_id', $election->id);
+        $data = $vote_query->select('candidate_election_id', DB::raw('count(*) as vote_counts'))->groupBy('candidate_election_id')->get();
+        $vote_counts = $data->pluck('vote_counts');
+
+        $chart = new ElectionResultChart;
+        $chart->labels($candidates_names);
+        $chart->dataset('My dataset', 'bar', $vote_counts);
+        return view('election.show', compact('election','vote_data','chart'));
     }
 
     /**
