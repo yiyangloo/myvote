@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.voter')
 
 @section('activity')
     voter

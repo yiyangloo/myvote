@@ -1,5 +1,5 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('activity')
-    admin
+admin
 @endsection

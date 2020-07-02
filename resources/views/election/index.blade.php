@@ -1,5 +1,14 @@
-@extends('layouts.main')
+@if(Auth::user()-> role == 0)
+    <?php $layout = 'layouts.admin'; ?>
 
+@elseif(Auth::user()-> role == 1)
+    <?php $layout = 'layouts.candidate'; ?>
+
+@elseif(Auth::user()-> role == 2)
+    <?php $layout = 'layouts.voter'; ?>
+
+@endif
+@extends($layout)
 
 @section('activity')
 <div class="container">
@@ -10,12 +19,14 @@
                     Election List
                 </div>
 
+                @if(Auth::user()-> role == 0)
                 <div class="card-body">
                     {{-- Content --}}
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#new_election_modal">Create New Election</button>
 
                     <hr>
+                    @endif
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -118,6 +129,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <script>
@@ -131,4 +143,5 @@
     </div>
 </div>
 </div>
+
 @endsection
