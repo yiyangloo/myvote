@@ -36,7 +36,7 @@
             </div>
             <div class="col-sm-6">
                 <h5 class="card-title">End Date and Time</h5>
-                <p class="card-text">{{$election->end_date}}</p>
+                <p class="card-text" id="end">{{$election->end_date}}</p>
             </div>
         </div>
         <br>
@@ -117,10 +117,10 @@
     const minute = second * 60;
     const hour = minute * 60;
     const day = hour * 24;
-    
-    let countDownDateTime = {{ strtotime("$election->end_date") }} * 1000;
-    
+      
     let timer = setInterval(function(){
+        
+        let countDownDateTime = new Date(document.getElementById('end').innerHTML).getTime();
         let now = new Date().getTime();
         let timeInterval = countDownDateTime - now;
         
@@ -136,6 +136,8 @@
             document.getElementById('hours').innerText = '-';
             document.getElementById('minutes').innerText = '-';
             document.getElementById('seconds').innerText = '-';
+            document.getElementById("vote_confirmation").disabled = true;
+            document.getElementById("vote_confirmation").innerText= "Expired";
         }
     },1000);
 </script>
