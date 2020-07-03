@@ -1,15 +1,4 @@
-@if(Auth::user()-> role == 0)
-    <?php $layout = 'layouts.admin'; ?>
-
-@elseif(Auth::user()-> role == 1)
-    <?php $layout = 'layouts.candidate'; ?>
-
-@elseif(Auth::user()-> role == 2)
-    <?php $layout = 'layouts.voter'; ?>
-
-@endif
-@extends($layout)
-
+@extends('layouts.main')
 @section('css')
 <style>
     .countdown li {

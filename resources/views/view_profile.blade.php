@@ -1,14 +1,4 @@
-@if(Auth::user()-> role == 0)
-    <?php $layout = 'layouts.admin'; ?>
-
-@elseif(Auth::user()-> role == 1)
-    <?php $layout = 'layouts.candidate'; ?>
-
-@elseif(Auth::user()-> role == 2)
-    <?php $layout = 'layouts.voter'; ?>
-
-@endif
-@extends($layout)
+@extends('layouts.main')
 
 @section('activity')
 <div class="container">
@@ -29,12 +19,12 @@
                     </div>
                     @endif
                     @if($errors->first('new_password'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{$errors->first('new_password')}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{$errors->first('new_password')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     @endif
 
                     @if($errors->first('new_password_confirmation'))
@@ -82,40 +72,41 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="update_password" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="update_password" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Change password</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Change password</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{route('profile.update',Auth::user())}}" method="POST">
+                            @method('PATCH')
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="">Current Password</label>
+                                    <input type="password" class="form-control" name="old_password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">New Password</label>
+                                    <input type="password" class="form-control" name="new_password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Confirm New Password</label>
+                                    <input type="password" class="form-control" name="new_password_confirmation">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Change password">
+                            </div>
+                            @csrf
+                        </form>
                     </div>
-                    <form action="{{route('profile.update',Auth::user())}}" method="POST">
-                        @method('PATCH')
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="">Current Password</label>
-                                <input type="password" class="form-control" name="old_password">
-                            </div>
-                            <div class="form-group">
-                                <label for="">New Password</label>
-                                <input type="password" class="form-control" name="new_password">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Confirm New Password</label>
-                                <input type="password" class="form-control" name="new_password_confirmation">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" value="Change password">
-                        </div>
-                        @csrf
-                    </form>
-                  </div>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </div>

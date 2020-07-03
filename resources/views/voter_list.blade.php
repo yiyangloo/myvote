@@ -1,14 +1,4 @@
-@if(Auth::user()-> role == 0)
-    <?php $layout = 'layouts.admin'; ?>
-
-@elseif(Auth::user()-> role == 1)
-    <?php $layout = 'layouts.main'; ?>
-
-@elseif(Auth::user()-> role == 2)
-    <?php $layout = 'layouts.main'; ?>
-
-@endif
-@extends($layout)
+@extends('layouts.main')
 
 @section('activity')
 <div class="container">
