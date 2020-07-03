@@ -4,7 +4,7 @@
         <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview menu-open">
-            @auth
+
             @if (Auth::user()->role == 0)
             <a href="/admin" class="nav-link">
                 @elseif (Auth::user()->role == 1)
@@ -12,7 +12,6 @@
                     @else
                     <a href="/voter" class="nav-link">
                         @endif
-                        @endauth
 
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
