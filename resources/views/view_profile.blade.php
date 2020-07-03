@@ -1,4 +1,14 @@
-@extends('layouts.main')
+@if(Auth::user()-> role == 0)
+    <?php $layout = 'layouts.admin'; ?>
+
+@elseif(Auth::user()-> role == 1)
+    <?php $layout = 'layouts.candidate'; ?>
+
+@elseif(Auth::user()-> role == 2)
+    <?php $layout = 'layouts.voter'; ?>
+
+@endif
+@extends($layout)
 
 @section('activity')
 <div class="container">
@@ -17,7 +27,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @endif                    
+                    @endif
                     @if($errors->first('new_password'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             {{$errors->first('new_password')}}
@@ -26,7 +36,7 @@
                             </button>
                         </div>
                     @endif
-                    
+
                     @if($errors->first('new_password_confirmation'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{$errors->first('new_password_confirmation')}}
@@ -51,7 +61,7 @@
                         </button>
                     </div>
                     @endif
-                            
+
 
                     <div class="form-group">
                         <label for="">Name</label>

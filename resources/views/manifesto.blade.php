@@ -1,4 +1,14 @@
-@extends('layouts.main')
+@if(Auth::user()-> role == 0)
+    <?php $layout = 'layouts.admin'; ?>
+
+@elseif(Auth::user()-> role == 1)
+    <?php $layout = 'layouts.candidate'; ?>
+
+@elseif(Auth::user()-> role == 2)
+    <?php $layout = 'layouts.voter'; ?>
+
+@endif
+@extends($layout)
 
 @section('activity')
 <div class="container">
@@ -12,7 +22,7 @@
                 <div class="card-body">
                 <form method="POST" action="{{ route('manifesto.update', Auth::user()) }}" enctype="multipart/form-data">
                 @method('PATCH')
-                       
+
 
                 {{-- Content --}}
                     <div class="col-sm-5">
@@ -34,7 +44,7 @@
                                 <button type="submit" class="btn btn-primary">{{ __('Submit') }} </button>
                     </div>
                      @csrf
-                    
+
                  </form>
                  </div>
 

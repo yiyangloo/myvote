@@ -5,6 +5,7 @@
   <div class="row flex">
     <div class="col-md-3 col-xl-2 ">
 
+
       <nav class="navbar navbar-expand-md navbar-light bg-light justify-content-center">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#unimmmmmmmm"
           aria-controls="asas" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,9 +19,12 @@
             <li class="nav-item"><a class="nav-link" href="{{route('voter_list.index')}}">Voter</a></li>
             <li class="nav-item"><a class="nav-link" href="{{route('election.index')}}">Elections</a></li>
           </ul>
+
+
         </div>
       </nav>
     </div>
+
 
     <main class="col-md-9 col-xl-8 py-md-3 pl-md-5">
       @yield('activity')
@@ -28,3 +32,4 @@
   </div>
 </div>
 @endsection
+

@@ -1,4 +1,14 @@
-@extends('layouts.main')
+@if(Auth::user()-> role == 0)
+    <?php $layout = 'layouts.admin'; ?>
+
+@elseif(Auth::user()-> role == 1)
+    <?php $layout = 'layouts.candidate'; ?>
+
+@elseif(Auth::user()-> role == 2)
+    <?php $layout = 'layouts.voter'; ?>
+
+@endif
+@extends($layout)
 
 @section('css')
 <style>
@@ -112,23 +122,23 @@
         $(".modal-body #candidate_name").text( candidate_name );
         $(".modal-footer #candidate_id").val( candidate_id );
     });
-    
+
     const second = 1000;
     const minute = second * 60;
     const hour = minute * 60;
     const day = hour * 24;
-    
+
     let countDownDateTime = {{ strtotime("$election->end_date") }} * 1000;
-    
+
     let timer = setInterval(function(){
         let now = new Date().getTime();
         let timeInterval = countDownDateTime - now;
-        
+
         document.getElementById('days').innerText = Math.floor(timeInterval / day);
         document.getElementById('hours').innerText = Math.floor((timeInterval % day) / hour);
         document.getElementById('minutes').innerText = Math.floor((timeInterval % hour) / minute);
         document.getElementById('seconds').innerText = Math.floor((timeInterval % minute) / second);
-        
+
         if (timeInterval<0){
             clearInterval(timer);
             document.getElementById('expired').innerText = "THE VOTING HAS EXPIRED";

@@ -86,7 +86,7 @@ class ManifestoController extends Controller
         $thumbnailImage->resize(50,50);
         $thumbnailImage->save($thumbnailPath.time().$originalImage->getClientOriginalName());
 
-        $user = Auth::user();            
+        $user = Auth::user();
         $user->manifesto = $data['manifesto'];
         $user->image = time().$originalImage->getClientOriginalName();
         $user->update();
