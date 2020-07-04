@@ -82,6 +82,7 @@
 
         <div class="content-wrapper">
             @yield('activity')
+
         </div>
 
 
