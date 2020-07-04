@@ -1,15 +1,4 @@
-@if(Auth::user()-> role == 0)
-    <?php $layout = 'layouts.admin'; ?>
-
-@elseif(Auth::user()-> role == 1)
-    <?php $layout = 'layouts.candidate'; ?>
-
-@elseif(Auth::user()-> role == 2)
-    <?php $layout = 'layouts.voter'; ?>
-
-@endif
-@extends($layout)
-
+@extends('layouts.main')
 @section('activity')
 <div class="container">
     <div class="row justify-content-center">
@@ -19,14 +8,14 @@
                     Election List
                 </div>
 
-                @if(Auth::user()-> role == 0)
+
                 <div class="card-body">
                     {{-- Content --}}
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#new_election_modal">Create New Election</button>
 
                     <hr>
-                    @endif
+
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -35,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-{{--                             <tr>
+                            {{--                             <tr>
                                 <th scope="row">3</th>
                                 <td colspan="2">Larry the Bird</td>
                                 <td>@twitter</td>
@@ -43,7 +32,8 @@
                             @foreach ($elections as $election)
                             <tr>
                                 <td>{{$election->election_title}}</td>
-                                <td><a href="{{route('election.show',['election' => $election])}}" class="btn btn-primary">Participate</a></td>
+                                <td><a href="{{route('election.show',['election' => $election])}}"
+                                        class="btn btn-primary">Participate</a></td>
                             </tr>
                             @endforeach
                         </tbody>

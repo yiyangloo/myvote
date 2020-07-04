@@ -26,3 +26,21 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->state(\App\User::class, 'admin', function (\Faker\Generator $faker) {
+    return [
+      'role' => 0,
+    ];
+  });
+
+  $factory->state(\App\User::class, 'candidate', function (\Faker\Generator $faker) {
+    return [
+      'role' => 1,
+    ];
+  });
+
+  $factory->state(\App\User::class, 'voter', function (\Faker\Generator $faker) {
+    return [
+      'role' => 2,
+    ];
+  });

@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/index', 'AdminController@index')->name('admin')->middleware('admin');
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
 Route::get('/voter', 'VoterController@index')->name('voter')->middleware('voter');
 Route::get('/candidate', 'CandidateController@index')->name('candidate')->middleware('candidate');
 Route::resource('profile','ProfileController');

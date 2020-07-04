@@ -8,7 +8,7 @@ class CandidateController extends Controller
 {
     public function index()
     {
-        return view('candidate/index');
+        return view('index');
     }
 }
 
