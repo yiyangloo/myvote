@@ -8,6 +8,13 @@
                 <div class="card-header">
                     Managing Users
                 </div>
+
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+                @endif
+
                 <div class="card-body">
                     {{-- Content --}}
                     <table class="table table-hover">
