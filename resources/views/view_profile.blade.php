@@ -3,7 +3,7 @@
 @section('activity')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col">
+        <div class="col-sm-6">
             <div class="card">
                 <div class="card-header">
                     {{Auth::user()->name}} Profile
@@ -105,6 +105,30 @@
                             @csrf
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    Profile Picture
+                </div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('picture.update', Auth::user()) }}"
+                        enctype="multipart/form-data">
+                        @method('PATCH')
+                        <div class="form-group">
+                            <label for="photo">{{ __('Photo') }}</label><br>
+                            <img class="card-img-top py-3" src="{{url('image/'.Auth::user()->image)}}"
+                                alt="{{Auth::user()->image}}" style="width: 10rem;">
+                            <input type="file" class="form-control-file" name="photo" />
+                        </div>
+                        @csrf
+                        <button type="submit" class="btn btn-primary">
+                            Change Profile Picture
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

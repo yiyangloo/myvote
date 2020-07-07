@@ -30,4 +30,5 @@ Route::resource('voter_list', 'VoterListController');
 Route::resource('election', 'ElectionController');
 Route::resource('vote', 'VoteController');
 Route::resource('manifesto', 'ManifestoController');
+Route::resource('picture', 'PictureController');
 Route::resource('users', 'UsersController');
