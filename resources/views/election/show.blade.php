@@ -12,7 +12,7 @@
                 {!! $chart->script() !!}
             </div>
         </div>
-        <div class="row pt-4 justify-content-md-center">
+        <div class="row pt-2 justify-content-md-center">
             <div class="col-sm-4">
                 <h5 class="card-text">Start Date and Time</h5>
                 <p class="card-text">{{$election->start_date}}</p>
@@ -22,8 +22,10 @@
                 <p class="card-text">{{$election->end_date}}</p>
             </div>
         </div>
-        <div class="row pt-4 justify-content-md-center">
-            <div class="col-sm-6">
+        <hr>
+        <div class="row pt-2 justify-content-md-center">
+
+            <div class="col-sm-4">
                 <h5 class="card-text">Time Remaining</h5>
                 <div class="container text-center countdowntimer">
                     <li class="li"
@@ -47,11 +49,12 @@
             </div>
         </div>
 
-        <br>
-        <div class="my-4">
+        <hr>
+        <div class="py-4">
             <h5 class="card-text">Description</h5>
             <p class="card-text">{{$election->election_description}}</p>
         </div>
+        <hr>
         <table class="table">
             <thead>
                 <tr>
@@ -65,9 +68,12 @@
                 <tr>
                     <td>{{$candidate->name}}</td>
                     <td>{{$vote_data->where('user_id', $candidate->id)->count()}}</td>
+                    @if (!$vote_data->contains('votedByID', Auth::user()->id))
                     <td><button type="button" class="btn btn-primary" id="vote_confirmation"
                             data-id="{{$candidate->id}}" data-name="{{$candidate->name}}" data-toggle="modal"
-                            data-target="#vote_candidate">Vote</button></td>
+                            data-target="#vote_candidate">Vote</button>
+                    </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
