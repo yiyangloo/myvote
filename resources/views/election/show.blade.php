@@ -142,6 +142,7 @@
             document.getElementById('hours').innerText = '-';
             document.getElementById('minutes').innerText = '-';
             document.getElementById('seconds').innerText = '-';
+            document.getElementById('vote_confirmation').remove();
         }
     },1000);
 </script>
