@@ -15,11 +15,11 @@ class CandidateController extends Controller
     {
         $elections = Election::all()->sortByDesc('end_date');
         $candidates = User::where('role', 1)->get();
-        return view('candidate/index', compact('candidates','elections'));
+        return view('candidate/index', compact('candidates', 'elections'));
     }
 
     public function store(Request $request)
-    {   
+    {
         $data = request()->validate([
             'election_title' => 'required',
             'start_date' => 'required',
@@ -34,4 +34,3 @@ class CandidateController extends Controller
         return redirect()->back();
     }
 }
-

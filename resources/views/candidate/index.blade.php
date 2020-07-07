@@ -67,21 +67,55 @@
     </div>
 
     <div class="row">
-    
+
         @foreach ($elections as $key => $election)
         <div class="column">
             <div class="card text-white bg-dark countdown">
-                <h3 class="card-title" >{{$election->election_title}}</h3>
+                <h3 class="card-title">{{$election->election_title}}</h3>
                 <p class="card-text">Start Date :</p>
                 <p class="card-text" id="d_{{ $key }}">{{$election->start_date}}</p>
                 <p class="card-text">End Date :</p>
                 <p class="card-text" id="b_{{ $key }}">{{$election->end_date}}</p>
                 Time remaining (DD:HH:MM:SS)
                 <p class="li"><span id="days{{ $key }}"></span></p>
-                <p id="print_{{ $key }}"></p>  
+                <p id="print_{{ $key }}"></p>
                 <button type="button" class="btn btn-primary" id="button{{ $key }}" onclick="window.location.href='{{route('election.show',['election' => $election])}}'">Participate</button>
                 <script>
-                    myFunction("print_{{ $key }}",document.getElementById('b_{{ $key }}').innerHTML,"button{{ $key }}","days{{ $key }}" );
+                    const second = 1000;
+                    const minute = second * 60;
+                    const hour = minute * 60;
+                    const day = hour * 24;
+                    const button = document.getElementById('button');
+
+
+                    function myFunction(a, c, f, j) {
+
+                        let timer = setInterval(function() {
+
+                            let now = new Date().getTime();
+                            let dt = new Date(c).getTime();
+                            let timeInterval = dt - now;
+
+                            document.getElementById(j).innerText = Math.floor(timeInterval / day) + ":" +
+                                Math.floor((timeInterval % day) / hour) + ":" + Math.floor((timeInterval % hour) / minute) +
+                                ":" + Math.floor((timeInterval % minute) / second);
+
+                            if (timeInterval < 0) {
+                                document.getElementById(f).disabled = true;
+                                document.getElementById(f).innerHTML = "Expired";
+                                document.getElementById(f).style.background = '#D1383D';
+                                document.getElementById(f).style.border = '#D1383D';
+                                document.getElementById(a).innerHTML = "Status : Expired";
+                                document.getElementById(j).remove();
+                            } else {
+                                document.getElementById(a).innerHTML = "Status : Available";
+                            }
+
+                        }, 1000);
+                    }
+                </script>
+                <script>
+                    myFunction("print_{{ $key }}", document.getElementById('b_{{ $key }}').innerHTML, "button{{ $key }}", "days{{ $key }}");
                 </script>
             </div>
         </div>
@@ -89,40 +123,4 @@
     </div>
 </div>
 
-@section('javascript')
-
-<script>
-    
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-    const button = document.getElementById('button');
-
-    function myFunction(a,c,f,j) {
-    
-        let timer = setInterval(function(){
-            
-            let now = new Date().getTime();
-            let dt = new Date(c).getTime();
-            let timeInterval = dt - now;
-
-            document.getElementById(j).innerText = Math.floor(timeInterval / day) + ":" 
-            + Math.floor((timeInterval % day) / hour) + ":" + Math.floor((timeInterval % hour) / minute) 
-            + ":" + Math.floor((timeInterval % minute) / second);
-
-            if (timeInterval<0){
-                document.getElementById(f).disabled = true;
-                document.getElementById(f).innerHTML = "Expired";
-                document.getElementById(f).style.background='#D1383D';
-                document.getElementById(f).style.border='#D1383D';
-                document.getElementById(j).remove();
-            }else{
-                document.getElementById(a).innerHTML = "Available";
-            }
-            
-        },1000);
-    }
-</script>
-@endsection
 @endsection
