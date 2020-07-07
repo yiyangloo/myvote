@@ -1,6 +1,4 @@
 @extends('layouts.main')
-
-
 @section('activity')
 <div class="container">
     <div class="row justify-content-center">
@@ -10,12 +8,14 @@
                     Election List
                 </div>
 
+
                 <div class="card-body">
                     {{-- Content --}}
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#new_election_modal">Create New Election</button>
 
                     <hr>
+
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -24,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-{{--                             <tr>
+                            {{--                             <tr>
                                 <th scope="row">3</th>
                                 <td colspan="2">Larry the Bird</td>
                                 <td>@twitter</td>
@@ -32,7 +32,8 @@
                             @foreach ($elections as $election)
                             <tr>
                                 <td>{{$election->election_title}}</td>
-                                <td><a href="{{route('election.show',['election' => $election])}}" class="btn btn-primary">Participate</a></td>
+                                <td><a href="{{route('election.show',['election' => $election])}}"
+                                        class="btn btn-primary">Participate</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -118,6 +119,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <script>
@@ -131,4 +133,5 @@
     </div>
 </div>
 </div>
+
 @endsection

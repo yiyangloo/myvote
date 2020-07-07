@@ -10,37 +10,40 @@
                 </div>
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('manifesto.update', Auth::user()) }}" enctype="multipart/form-data">
-                @method('PATCH')
-                       
+                    <form method="POST" action="{{ route('manifesto.update', Auth::user()) }}"
+                        enctype="multipart/form-data">
+                        @method('PATCH')
 
-                {{-- Content --}}
-                    <div class="col-sm-5">
+
+                        {{-- Content --}}
+                        <div class="col-sm-5">
 
                             <label for="photo">{{ __('Photo') }}</label> </br>
 
-                            <img class="card-img-top" src="{{url('image/'.Auth::user()->image)}}" alt="{{Auth::user()->image}}">
+                            <img class="card-img-top" src="{{url('image/'.Auth::user()->image)}}"
+                                alt="{{Auth::user()->image}}">
 
-                            <input type="file" class="form-control" name="photo"/> </br>
+                            <input type="file" class="form-control" name="photo" /> </br>
 
                         </div>
                         <div class="col-sm-12">
 
                             <label for="manifesto">{{ __('Manifesto') }}</label>
 
-                             <input type="text" id="manifesto" name="manifesto" class="form-control" value="{{Auth::user()->manifesto}}" required> </br>
+                            <input type="text" id="manifesto" name="manifesto" class="form-control"
+                                value="{{Auth::user()->manifesto}}" required> </br>
 
 
-                                <button type="submit" class="btn btn-primary">{{ __('Submit') }} </button>
-                    </div>
-                     @csrf
-                    
-                 </form>
-                 </div>
+                            <button type="submit" class="btn btn-primary">{{ __('Submit') }} </button>
+                        </div>
+                        @csrf
 
+                    </form>
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
