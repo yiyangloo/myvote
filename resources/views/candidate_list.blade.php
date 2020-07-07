@@ -14,8 +14,8 @@
                         <thead>
                             <tr>
                                 <th width="15%">Candidate's Image</th>
-                                <th width="35%">Name</th>
-                                <th width="35%">Manisfesto</th>
+                                <th width="20%">Name</th>
+                                <th width="65%">Manisfesto</th>
                             </tr>
                             @foreach ($candidates as $candidate)
                             <tr>
