@@ -16,17 +16,17 @@
 
                         <tr>
                             <td><label for="">Name</label></td>
-                            <td>{{Auth::user()->name}}</td>
+                            <td>{{$user->name}}</td>
                         </tr>
                         <tr>
                             <td><label for="">Email</label></td>
                             <td>
-                                {{Auth::user()->email}}
+                                {{$user->email}}
                             </td>
                         </tr>
                         <tr>
                             <td><label for="">Role</label></td>
-                            <td>{{Auth::user()->role}}</td>
+                            <td>{{$user->role}}</td>
                         </tr>
                     </TABLE>
 

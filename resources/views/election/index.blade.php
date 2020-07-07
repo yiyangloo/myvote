@@ -24,15 +24,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{--                             <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr> --}}
                             @foreach ($elections as $election)
                             <tr>
                                 <td>{{$election->election_title}}</td>
-                                <td><a href="{{route('election.show',['election' => $election])}}"
+                                <td><a href="{{route('election.show', $election->id)}}"
                                         class="btn btn-primary">Participate</a></td>
                             </tr>
                             @endforeach
@@ -66,8 +61,8 @@
                                     <label for="election_candidate" class="col-sm-2 col-form-label">Candidates</label>
                                     <div class="col-sm-10">
                                         <select class="form-control selectpicker" name="election_candidate[]"
-                                            data-live-search="true" data-size="8"
-                                            title="Select the candidates for the election :" multiple required>
+                                            data-size="8" title="Select the candidates for the election :" multiple
+                                            required>
                                             @foreach($candidates as $candidate)
                                             <option value="{{$candidate->id}}">{{ $candidate->name }}</option>
                                             @endforeach

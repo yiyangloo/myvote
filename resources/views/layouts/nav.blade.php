@@ -18,7 +18,7 @@
                     </a>
         </li>
 
-        @if (Auth::user()->role == 0)
+        {{-- @if (Auth::user()->role == 0) --}}
         <li class="nav-item">
             <a href="{{route('users.index')}}" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
@@ -27,9 +27,9 @@
                 </p>
             </a>
         </li>
-        @endif
+        {{-- @endif --}}
 
-        @if (Auth::user()->role == 1)
+        {{-- @if (Auth::user()->role == 1) --}}
         <li class="nav-item">
             <a href="{{route('manifesto.index')}}" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
@@ -38,9 +38,9 @@
                 </p>
             </a>
         </li>
-        @endif
+        {{-- @endif --}}
 
-        @if (Auth::user()->role == 1 || Auth::user()->role == 2)
+        {{-- @if (Auth::user()->role == 1 || Auth::user()->role == 2) --}}
         <li class="nav-item">
             <a href="{{route('candidate_list.index')}}" class="nav-link">
                 <i class="nav-icon fas fa-tree"></i>
@@ -49,7 +49,7 @@
                 </p>
             </a>
         </li>
-        @endif
+        {{-- @endif --}}
 
 
 

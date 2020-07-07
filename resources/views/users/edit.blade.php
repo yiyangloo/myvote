@@ -23,7 +23,10 @@
                         </div>
                         <div class="form-group">
                             <label for="quantity">Role:</label>
-                            <input type="text" class="form-control" name="role" value={{ $users->role }} />
+                            <select name="role" class="form-control" value={{ $users->role }}>
+                                <option value="1">Candidate</option>
+                                <option value="2">Voter</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>

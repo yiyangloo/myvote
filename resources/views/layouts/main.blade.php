@@ -81,7 +81,9 @@
         </aside>
 
         <div class="content-wrapper">
-            @yield('activity')
+            <div class="container pt-3">
+                @yield('activity')
+            </div>
 
         </div>
 

@@ -10,15 +10,15 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::where('role', 1)->orWhere('role', 2)->get();
 
         return view('users.index', compact('users'));
     }
 
     public function show($id)
     {
-        $users = User::find($id);
-        return view('users.show', compact('users'));
+        $user = User::find($id);
+        return view('users.show', compact('user'));
     }
 
     public function edit($id)
@@ -29,14 +29,14 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required',
             'email' => ['required', 'string', 'email', 'max:255'],
-            'role' => 'required|integer'
+            'role' => 'required'
         ]);
 
         $users = User::find($id);
-        $users->update($request->all());
+        $users->update($data);
 
         return redirect()->route('users.index')
             ->with('success', 'User has been updated');
