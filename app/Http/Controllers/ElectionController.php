@@ -41,6 +41,7 @@ class ElectionController extends Controller
      */
     public function store(Request $request)
     {   
+        $this->authorize('create', Election::class);
         $data = request()->validate([
             'election_title' => 'required',
             'start_date' => 'required',

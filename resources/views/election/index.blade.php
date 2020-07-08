@@ -12,10 +12,11 @@
 
                 <div class="card-body">
                     {{-- Content --}}
+                    @can('create', App\Election::class)
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#new_election_modal">Create New Election</button>
-
                     <hr>
+                    @endcan
 
                     <table class="table table-hover">
                         <thead>
@@ -135,10 +136,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
-
-        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script> --}}
     </div>
 </div>
 </div>

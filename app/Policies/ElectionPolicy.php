@@ -41,7 +41,10 @@ class ElectionPolicy
      */
     public function create(User $user)
     {
-        return in_array($user->role, [1,]);
+        return in_array($user->role, [
+            'Admin',
+
+        ]);
     }
 
     /**

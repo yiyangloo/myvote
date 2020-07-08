@@ -1,23 +1,22 @@
 @extends('layouts.main')
-
 @section('activity')
 <div class="card text-center">
     <h4 class="card-header">
         {{$election->election_title}}
     </h4>
     <div class="card-body">
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-center">
             <div class="col-8">
                 {!! $chart->container() !!}
                 {!! $chart->script() !!}
             </div>
         </div>
-        <div class="row pt-2 justify-content-md-center">
-            <div class="col-sm-4">
+        <div class="row pt-2 justify-content-center">
+            <div class="col-sm-6 pt-2 pt-sm-0">
                 <h5 class="card-text">Start Date and Time</h5>
                 <p class="card-text">{{$election->start_date}}</p>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6 pt-5 pt-sm-0">
                 <h5 class="card-text">End Date and Time</h5>
                 <p class="card-text">{{$election->end_date}}</p>
             </div>
@@ -108,9 +107,9 @@
         </div>
     </div>
 </div>
-@endsection
+{{-- @endsection
 
-@section('javascript')
+@section('javascript') --}}
 <script defer>
     $(document).on("click", "#vote_confirmation", function () {
         let candidate_id = $(this).data('id');

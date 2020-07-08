@@ -83,7 +83,7 @@
                     <p class="li"><span id="days{{ $key }}"></span></p>
                     <p id="print_{{ $key }}"></p>
                     <button type="button" class="btn btn-primary" id="button{{ $key }}"
-                        onclick="window.location.href='{{route('election.show',['election' => $election])}}'">Participate</button>
+                        onclick="window.location.href='{{route('election.show',['election' => $election->id])}}'">Participate</button>
                 </div>
 
                 <script>
