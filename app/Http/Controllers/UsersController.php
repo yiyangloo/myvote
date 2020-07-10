@@ -37,7 +37,6 @@ class UsersController extends Controller
 
         $users = User::find($id);
         $users->update($data);
-
         return redirect()->route('users.index')
             ->with('success', 'User has been updated');
     }
@@ -47,7 +46,6 @@ class UsersController extends Controller
     {
         $users = User::find($id);
         $users->delete();
-
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
     }

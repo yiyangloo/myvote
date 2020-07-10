@@ -30,7 +30,13 @@
                             <tr>
                                 <td>{{$election->election_title}}</td>
                                 <td><a href="{{route('election.show', $election->id)}}"
-                                        class="btn btn-primary">Participate</a></td>
+                                        class="btn btn-primary">Participate</a>
+                                    @can('create', App\Election::class)
+                                    <a href="{{route('election.show', $election->id)}}" class="btn btn-info">Edit</a>
+                                    <a href="{{route('election.show', $election->id)}}"
+                                        class="btn btn-danger">Delete</a>
+                                    @endcan
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

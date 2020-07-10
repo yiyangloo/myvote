@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('role');
             $table->string('image')->nullable();
             $table->string('manifesto')->nullable();
+            $table->boolean('active')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

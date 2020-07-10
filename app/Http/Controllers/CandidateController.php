@@ -20,17 +20,6 @@ class CandidateController extends Controller
 
     public function store(Request $request)
     {
-        /* $data = request()->validate([
-            'election_title' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'election_description' => 'required',
-        ]);
-
-        $candidates_id = User::whereIn('id', $request->election_candidate)->get();
-        $election = new Election($data);
-        $election->save();
-        $election->candidates()->sync($candidates_id);
-        return redirect()->back(); */
+        //
     }
 }

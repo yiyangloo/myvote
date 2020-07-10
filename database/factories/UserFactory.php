@@ -30,6 +30,7 @@ $factory->define(User::class, function (Faker $faker) {
 $factory->state(\App\User::class, 'admin', function (\Faker\Generator $faker) {
     return [
       'role' => 0,
+      'active' => true,
     ];
   });
 

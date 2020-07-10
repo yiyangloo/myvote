@@ -23,7 +23,18 @@
             <a href="{{route('users.index')}}" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
                 <p>
-                    Managing User
+                    Managing Users
+                </p>
+            </a>
+        </li>
+        @endif
+
+        @if (Auth::user()->role == 'Admin')
+        <li class="nav-item">
+            <a href="{{route('approval.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                    Approve New Users
                 </p>
             </a>
         </li>

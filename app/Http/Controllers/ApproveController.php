@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Auth;
-use Hash;
-class ProfileController extends Controller
+
+class ApproveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('view_profile');
+        $users = User::where('active', false)->get();
+        return view('approveUser', compact('users'));
     }
 
     /**
@@ -68,22 +68,10 @@ class ProfileController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request  $request, User $approval)
     {
-        $data = request()->validate([
-            'old_password'=> 'required',
-            'new_password'=> 'required|confirmed|min:8',
-            'new_password_confirmation'=>'required',
-        ]);
-
-        if (! Hash::check($data['old_password'], Auth::user()->password)) {
-            return redirect()->back()->with('message','Current password is incorrect. Please enter the correct password to change new password.');
-        } else {
-            $user = Auth::user();            
-            $user->password = bcrypt($data['new_password']);
-            $user->update();
-            return redirect()->back()->with('success','Password changed successfully!');
-        }
+        $approval->update(['active' => true]);
+        return redirect()->route('approval.index')->withMessage('User approved successfully');
     }
 
     /**

@@ -1,41 +1,41 @@
 @extends('layouts.main')
 <style>
-    * {
+    /* * {
         box-sizing: border-box;
     }
 
     body {
         font-family: Arial, Helvetica, sans-serif;
-    }
+    } */
 
     /* Float four columns side by side */
-    .column {
+    /* .column {
         margin-bottom: 20px;
         float: left;
         width: 25%;
         padding: 0 10px;
-    }
+    } */
 
     /* Remove extra left and right margins, due to padding */
-    .row {
+    /* .row {
         margin: 0 -5px;
-    }
+    } */
 
     /* Clear floats after the columns */
-    .row:after {
+    /* .row:after {
         content: "";
         display: table;
         clear: both;
-    }
+    } */
 
     /* Responsive columns */
-    @media screen and (max-width: 600px) {
+    /* @media screen and (max-width: 600px) {
         .column {
             width: 100%;
             display: block;
             margin-bottom: 20px;
         }
-    }
+    } */
 
     /* Style the counter cards */
     .card {
@@ -69,7 +69,7 @@
     <div class="row">
 
         @foreach ($elections as $key => $election)
-        <div class="column">
+        <div class="col-md-4 col-lg-3">
             <div class="card text-white bg-dark countdown">
                 <div class="card-header">
                     <h1 class="card-title">{{$election->election_title}}</h1>
