@@ -84,7 +84,8 @@ class ElectionController extends Controller
      */
     public function edit(Election $election)
     {
-        //
+        $candidates = User::where('role', 1)->get();
+        return view('election.edit', compact('election','candidates'));
     }
 
     /**
@@ -96,7 +97,17 @@ class ElectionController extends Controller
      */
     public function update(Request $request, Election $election)
     {
-        //
+        $data = request()->validate([ 
+            'election_title' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'election_description' => 'required',
+         ]);
+        $election->update($data);
+        $candidates_id = User::whereIn('id', $request->election_candidate)->get();
+        $election->candidates()->sync($candidates_id);
+        return redirect()->back();
+
     }
 
     /**
@@ -107,6 +118,9 @@ class ElectionController extends Controller
      */
     public function destroy(Election $election)
     {
-        //
+        $this->authorize('create', Election::class);
+        $election->delete();
+        return redirect()->route('election.index')
+            ->with('success', 'Election deleted successfully');
     }
 }

@@ -7,9 +7,11 @@
                 <div class="card-header">
                     Election List
                 </div>
-
-
-
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+                @endif
                 <div class="card-body">
                     {{-- Content --}}
                     @can('create', App\Election::class)
@@ -29,13 +31,18 @@
                             @foreach ($elections as $election)
                             <tr>
                                 <td>{{$election->election_title}}</td>
-                                <td><a href="{{route('election.show', $election->id)}}"
-                                        class="btn btn-primary">Participate</a>
-                                    @can('create', App\Election::class)
-                                    <a href="{{route('election.show', $election->id)}}" class="btn btn-info">Edit</a>
-                                    <a href="{{route('election.show', $election->id)}}"
-                                        class="btn btn-danger">Delete</a>
-                                    @endcan
+                                <td>
+                                    <form action="{{route('election.destroy', $election->id)}}" method="post">
+                                        <a href="{{route('election.show', $election->id)}}"
+                                            class="btn btn-primary">Participate</a>
+                                        @can('create', App\Election::class)
+                                        <a href="{{route('election.edit', $election->id)}}"
+                                            class="btn btn-info">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        @endcan
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
